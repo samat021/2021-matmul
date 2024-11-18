@@ -1,0 +1,78 @@
+                           _____________________
+
+                            PROJECT 3 QUESTIONS
+                           _____________________
+
+Project Instructions
+================
+
+    The following questions assume you have completed the code and will ask you
+    about what you observed. The questions are essay style and will be manually
+    graded. You should write at most one paragraph (roughly 3 to 5 sentences)
+    for each question that asks for an explanation. For the question that asks
+    you to calculate cache misses, you must show all of your work.
+
+
+1. CACHES AND CACHE MISSES  
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+According to the "lscpu" command run on a Keller Hall 1-262 machine, the L1
+cache of a Keller 1-262 machine is 128 kilobytes (where 1 kilobyte = 1024
+bytes). Assume the cache has a 64-byte block size.
+
+Suppose we are running a C program on one of the Keller 1-262 machines that
+features an int array with 262,144 elements. Assume the array is aligned to the
+L1 cache's block size (i.e., the array's starting address is a multiple of 64).
+Our program performs a linear search over the array for a value that is not
+stored in the array.
+
+How many cache misses occur during this search? You should ignore the loop
+variable (e.g., "int i"). Make sure to show your work.
+
+    (DO MATH FOR THIS ONE!!!!)
+    It is a 64 byte block size, and since the array is an int it has byte size of 4. 
+    64/4 = 16, (16 ints a block) so that is how many ints you can fit into the block. 
+    In the int array there are 262,144 elements, so that means for every 16 hits
+    for the 0-15th elements, then a miss would occur. Then the pattern continues 
+    for the 16-31st elements, so by dividing 262144/16 there would be 16384 cache misses.
+
+
+
+2. WALL TIME AND CPU TIME
+~~~~~~~~~~~~~~~~~~~~~~~~~
+In the 'matrix_main.c', we measure both the CPU and wall time required for the
+functions to run. What is the difference between these two types of time
+measurement? When might we be interested in the wall time? CPU time? Which
+makes more sense to use for what we care about in this project?
+
+    The difference between CPU time and wall time is that CPU time is the 
+    time the CPU takes on a code (processing time), compared to wall time 
+    where that is the real world time, from start to end of the program.
+    
+    We would be intrested in Wall time during file i/o becuase of reading and writing.
+    We might be intrested in CPU time b/c it is how long it was actively going 
+    through the time; we might be intrested in this time if we are looking for improvements
+    of our code's efficency. 
+
+    In this project, we don't care about walltime, we are looking for performance
+     and optimization, so our priority is CPU time.  
+
+
+3. LINEAR SEARCH 3-TIMES
+~~~~~~~~~~~~~~~~~~~~~~~~
+This question refers to the work you did in Lab 8. Refer back to this lab as
+needed to answer this question.
+
+We asked you to improve upon a provided version of the function "list_find".
+Why was the provided version inefficient? How did your improved version compare
+to performing the same search using an array instead of a linked list? Why do
+you think this is?
+
+    The function list_find had a for loop and within list_find it called another function (that then had a forloop).
+    This will of course take a long time and isn't very efficent. I improved the code by not calling another function,
+    and instead I implemented a while loop where inside is an if conditional statement.
+    Using an array,it is sequential while linked list have pointers to anywhere in the memory. This is 
+    b/c of Spacial locality cause it is making good use of the cache and that is what the array is doing.
+    Spacial locality is when a program access a particular address, so it will probably access nearby addresses,
+    this is good for an array b/c of how it is sequential and it is not scattered in memory unlike linked lists.
+    (With linked lists you don't know if the next node would be in the cache or if you have to go back down to main
+    memory. in the long run it is inefficent and slow since you don't want to go to main memory after each node)
